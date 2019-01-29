@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,10 +29,12 @@ public class FileDao {
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
 				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-					PreparedStatement ps = connection.prepareStatement("insert into test_file(file_name,file_data) values(?,?)",
+					PreparedStatement ps = connection.prepareStatement("insert into test_suite(file_name,file_timestamp,file_data) values(?,?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1,name);
-					ps.setBlob(2, file);
+					//ps.setString(2, null);
+					ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+					ps.setBlob(3, file);
 					return ps;
 				}
 			}, holder);

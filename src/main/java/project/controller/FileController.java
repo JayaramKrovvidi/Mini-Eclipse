@@ -21,7 +21,7 @@ public class FileController {
 	FileService fileService;
 	
 	@PostMapping("/upload")
-	@CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angualar
+	//@CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angualar
 	public ResponseEntity <String> storeWithService(@RequestParam("testingData") MultipartFile file)
 	{
 		String message = "";
