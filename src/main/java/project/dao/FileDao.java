@@ -14,6 +14,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import project.values.Queries;
+
 @Repository
 public class FileDao {
 	
@@ -28,11 +30,10 @@ public class FileDao {
 			
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
-				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-					PreparedStatement ps = connection.prepareStatement("insert into test_suite(file_name,file_timestamp,file_data) values(?,?,?)",
-							Statement.RETURN_GENERATED_KEYS);
+				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException 
+				{
+					PreparedStatement ps = connection.prepareStatement(Queries.INSERT_FILE,Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1,name);
-					//ps.setString(2, null);
 					ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
 					ps.setBlob(3, file);
 					return ps;

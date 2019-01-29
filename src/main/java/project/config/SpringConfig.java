@@ -1,5 +1,7 @@
 package project.config;
 
+import project.values.ProjectStrings;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -18,10 +20,10 @@ public class SpringConfig extends WebMvcConfigurerAdapter{
     @Bean
     public DataSource dataSource() {
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/mini");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setDriverClassName(ProjectStrings.DRIVER_NAME);
+        dataSource.setUrl(ProjectStrings.DATABASE_URL);
+        dataSource.setUsername(ProjectStrings.DATABASE_USER_NAME);
+        dataSource.setPassword(ProjectStrings.DATABASE_USER_PASSWORD);
         return dataSource;
     }  
     

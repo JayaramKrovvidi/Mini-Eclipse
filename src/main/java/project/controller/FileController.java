@@ -5,7 +5,6 @@ import javax.servlet.annotation.MultipartConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,19 +21,19 @@ public class FileController {
 	
 	@PostMapping("/upload")
 	//@CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angualar
-	public ResponseEntity <String> storeWithService(@RequestParam("testingData") MultipartFile file)
+	public ResponseEntity<?> storeWithService(@RequestParam("testingData") MultipartFile file)
 	{
 		String message = "";
 		try
 		{
 			fileService.storeWithDao(file);
 			message = "You successfully uploaded " + file.getOriginalFilename() + "!";
-			return ResponseEntity.status(HttpStatus.OK).body(message);
+			return new ResponseEntity<>(message,HttpStatus.OK);
 		}
 		catch(Exception e) 
 		{
 			message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+			return new ResponseEntity<>(message,HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 	

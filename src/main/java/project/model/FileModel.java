@@ -1,6 +1,5 @@
 package project.model;
 
-import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,10 +36,7 @@ public class FileModel {
 	
 
 
-	public FileModel() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public FileModel() {}
 
 
 
