@@ -2,6 +2,7 @@ package project.controller;
 
 import javax.servlet.annotation.MultipartConfig;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import project.model.CustomResponse;
 import project.service.FileService;
 
 @RestController
@@ -19,21 +21,19 @@ public class FileController {
 	@Autowired
 	FileService fileService;
 	
-	@PostMapping("/upload")
+	@PostMapping(path = "/upload")
 	//@CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angualar
-	public ResponseEntity<?> storeWithService(@RequestParam("testingData") MultipartFile file)
+	public ResponseEntity<CustomResponse> storeWithService(@RequestParam("testingData") MultipartFile file)
 	{
-		String message = "";
 		try
 		{
+			Thread.sleep(3000);
 			fileService.storeWithDao(file);
-			message = "You successfully uploaded " + file.getOriginalFilename() + "!";
-			return new ResponseEntity<>(message,HttpStatus.OK);
+			return  new ResponseEntity<>(new CustomResponse("You successfully uploaded " + file.getOriginalFilename()),HttpStatus.EXPECTATION_FAILED);
 		}
 		catch(Exception e) 
 		{
-			message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
-			return new ResponseEntity<>(message,HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<>(new CustomResponse("Failed to upload file" + file.getOriginalFilename()),HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 	
