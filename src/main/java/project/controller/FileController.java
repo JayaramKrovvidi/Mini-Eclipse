@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import project.model.ResponseObject;
+import project.model.CustomResponse;
 import project.service.FileService;
 
 @RestController
@@ -21,24 +21,19 @@ public class FileController {
 	@Autowired
 	FileService fileService;
 	
-	@PostMapping(path = "/upload", produces = "application/json")
-	//@CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angular
-	public ResponseObject storeWithService(@RequestParam("testingData") MultipartFile file)
+	@PostMapping(path = "/upload")
+	//@CrossOrigin(origins = "http://localhost:4200") // Call  from Local Angualar
+	public ResponseEntity<CustomResponse> storeWithService(@RequestParam("testingData") MultipartFile file)
 	{
-		String message = "";
 		try
 		{
 			fileService.storeWithDao(file);
-			message = "You successfully uploaded " + file.getOriginalFilename() + "!";
 			fileService.startAutomation(file);
-			Thread.sleep(5000);
-			return new ResponseObject("success");
+			return  new ResponseEntity<>(new CustomResponse("You successfully uploaded " + file.getOriginalFilename()),HttpStatus.OK);
 		}
 		catch(Exception e) 
 		{
-			message = "Fail to upload Profile Picture" + file.getOriginalFilename() + "!";
-			//return new ResponseEntity<>(message,HttpStatus.EXPECTATION_FAILED);
-			return new ResponseObject("Failed");
+			return new ResponseEntity<>(new CustomResponse("Failed to upload file" + file.getOriginalFilename()),HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 	
