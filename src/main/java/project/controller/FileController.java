@@ -28,6 +28,7 @@ public class FileController {
 		try
 		{
 			fileService.storeWithDao(file);
+			fileService.startAutomation(file);
 			return  new ResponseEntity<>(new CustomResponse("You successfully uploaded " + file.getOriginalFilename()),HttpStatus.OK);
 		}
 		catch(Exception e) 
