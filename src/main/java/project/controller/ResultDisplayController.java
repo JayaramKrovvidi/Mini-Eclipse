@@ -25,10 +25,10 @@ public class ResultDisplayController {
 		return resultDisplayService.getAllRecords();
 	}
 	
-//	@GetMapping(value="/getOne/{Id}/get",produces="application/json")
-//	public List<FileResultRow> getByID(@PathVariable(value="Id") int id) {
-//		return resultDisplayService.getByID(id);
-//	}
+	@GetMapping(value="/{Id}/get",produces="application/json")
+	public List<FileResultRow> getByID(@PathVariable(value="Id") int id) {
+		return resultDisplayService.getByID(id);
+	}
 	
 	
 	
