@@ -27,9 +27,8 @@ public class FileController {
 	{
 		try
 		{
-			Thread.sleep(3000);
 			fileService.storeWithDao(file);
-			return  new ResponseEntity<>(new CustomResponse("You successfully uploaded " + file.getOriginalFilename()),HttpStatus.EXPECTATION_FAILED);
+			return  new ResponseEntity<>(new CustomResponse("You successfully uploaded " + file.getOriginalFilename()),HttpStatus.OK);
 		}
 		catch(Exception e) 
 		{
