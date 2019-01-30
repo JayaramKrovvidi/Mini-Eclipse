@@ -21,10 +21,11 @@ public class ResultDisplayService {
 		
 	}
 
-//	public static List<FileResultRow> getByID(int id) {
-//		
-//		return resultDisplayDao.getByID(id);
-//		
-//	}
+
+	public  List<FileResultRow> getByID(int id) {
+		
+		return resultDisplayDao.getByID(id);
+
+	}
 
 }

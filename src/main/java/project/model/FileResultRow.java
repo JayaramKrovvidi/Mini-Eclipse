@@ -3,8 +3,9 @@ package project.model;
 import java.sql.Timestamp;
 
 public class FileResultRow {
-	private int lineNo;
 	private int fileId;
+	private int lineNo;
+
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private int expectedResponseCode;
@@ -13,7 +14,7 @@ public class FileResultRow {
 	private String obtainedResponseType;
 	private boolean result;
 	
-	public FileResultRow(int lineNo, int fileId, Timestamp startTime, Timestamp endTime, int expectedResponseCode,
+	public FileResultRow(int fileId, int lineNo, Timestamp startTime, Timestamp endTime, int expectedResponseCode,
 			String expectedResponseType, int obtainedResponseCode, String obtainedResponseType, boolean result) {
 		super();
 		this.lineNo = lineNo;

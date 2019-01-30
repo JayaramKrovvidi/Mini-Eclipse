@@ -1,42 +1,62 @@
 package project.model;
 
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.google.protobuf.Timestamp;
+
 
 public class FileModel {
 	private int fileId;
 	private String fileName;
-	private List<FileResultRow> rowsResultList;
+	//private List<FileResultRow> rowsResultList;
 	private long recordsCount;
 	private Timestamp startTime;
 	private long recordsPassed;
 	private long recordsFailed;
 	private double passPercentage;
-	private long excecutionTime;
+	private int executionTime;
+	private Timestamp stopTime;
 	
 	
 	
 	
-	public FileModel(int fileId, String fileName, long recordsCount,
-			Timestamp startTime, long recordsPassed, long recordsFailed, double passPercentage, long excecutionTime) {
+//	public FileModel(int fileId, String fileName, long recordsCount,
+//			Timestamp startTime, long recordsPassed, long recordsFailed, double passPercentage, long excecutionTime) {
+//		super();
+//		this.fileId = fileId;
+//		this.fileName = fileName;
+//		this.rowsResultList = new LinkedList<>();
+//		this.recordsCount = recordsCount;
+//		this.startTime = startTime;
+//		this.recordsPassed = recordsPassed;
+//		this.recordsFailed = recordsFailed;
+//		this.passPercentage = passPercentage;
+//		this.excecutionTime = excecutionTime;
+//	}
+	
+	
+	public FileModel(int fileId, String fileName,long recordsCount,
+			Timestamp startTime,Timestamp stopTime, long recordsPassed, long recordsFailed, double passPercentage, int executionTime) {
 		super();
 		this.fileId = fileId;
 		this.fileName = fileName;
-		this.rowsResultList = new LinkedList<>();
 		this.recordsCount = recordsCount;
 		this.startTime = startTime;
 		this.recordsPassed = recordsPassed;
 		this.recordsFailed = recordsFailed;
 		this.passPercentage = passPercentage;
-		this.excecutionTime = excecutionTime;
+		this.executionTime = executionTime;
+		this.setStopTime(stopTime);
 	}
-	
+
 	
 
 
 	public FileModel() {}
+
+
+
 
 
 
@@ -91,13 +111,13 @@ public class FileModel {
 	}
 
 
-	public long getExcecutionTime() {
-		return excecutionTime;
+	public int getExecutionTime() {
+		return executionTime;
 	}
 
 
-	public void setExcecutionTime(long excecutionTime) {
-		this.excecutionTime = excecutionTime;
+	public void setExecutionTime(int excecutionTime) {
+		this.executionTime = excecutionTime;
 	}
 
 
@@ -111,25 +131,53 @@ public class FileModel {
 	}
 
 
+
+
+	public Timestamp getStopTime() {
+		return stopTime;
+	}
+
+
+
+
+	public void setStopTime(Timestamp stopTime) {
+		this.stopTime = stopTime;
+	}
+
+
+
+
 	public String getFileName() {
 		return fileName;
 	}
+
+
 
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
 
+//
+//	public String getFileName() {
+//		return fileName;
+//	}
 
-	public List<FileResultRow> getRowsResultList() {
-		return rowsResultList;
-	}
 
-
-	public void setRowsResultList(List<FileResultRow> rowsResultList) {
-		this.rowsResultList = rowsResultList;
-	}
-	
+//	public void setFileName(String fileName) {
+//		this.fileName = fileName;
+//	}
+//
+//
+//	public List<FileResultRow> getRowsResultList() {
+//		return rowsResultList;
+//	}
+//
+//
+//	public void setRowsResultList(List<FileResultRow> rowsResultList) {
+//		this.rowsResultList = rowsResultList;
+//	}
+//	
 	
 	
 }

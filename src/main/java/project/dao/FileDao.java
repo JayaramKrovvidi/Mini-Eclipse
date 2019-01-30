@@ -22,7 +22,7 @@ public class FileDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	public int storeInDb(Blob file,String name)
+	public int storeInDb(final Blob file,final String name)
 	{
 		try 
 		{

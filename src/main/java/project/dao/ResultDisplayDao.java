@@ -37,40 +37,25 @@ public class ResultDisplayDao {
 		});
 	}
 	
-//	public List<FileResultRow> getAllRecords() {
-//	return jdbcTemplate.query("select * from execution_results",new RowMapper<FileResultRow>(){  
-//	    @Override  
-//	    public FileResultRow mapRow(ResultSet rs, int rownumber) throws SQLException {  
-//	    	return new FileResultRow(
-//					rs.getInt("file_id"),
-//					rs.getInt("line_num"),
-//					rs.getTimestamp("start_time"),
-//					rs.getInt("expected_response_code"),
-//					rs.getInt("obtained_response_code"),
-//					rs.getString("expected_response_type"),
-//					rs.getString("obtained_response_type"),
-//					rs.getBoolean("result")
-//					);
-//	    }  
-//	    });  
-//	}
+
+	public List<FileResultRow> getByID(int id){
+		return jdbcTemplate.query("select * from execution_results where file_id=\""+id+"\";",(rs,i)->{
+			return new FileResultRow(
+					rs.getInt("file_id"),
+					rs.getInt("line_num"),
+					rs.getTimestamp("start_time"),
+					rs.getTimestamp("stop_time"),
+					rs.getInt("expected_response_code"),
+					
+					rs.getString("expected_response_type"),
+					rs.getInt("obtained_response_code"),
+					rs.getString("obtained_response_type"),
+					rs.getBoolean("result")
+					);
+		});
+	}
 	
-	
-//	public List<FileResultRow> getByID(int id){
-//		return jdbcTemplate.query("select * from execution_results where file_id=\""+id+"\";",(rs,i)->{
-//			return new FileResultRow(
-//					rs.getInt("file_id"),
-//					rs.getInt("line_num"),
-//					rs.getTimestamp("start_time"),
-//					rs.getInt("expected_response_code"),
-//					rs.getInt("obtained_response_code"),
-//					rs.getString("expected_response_type"),
-//					rs.getString("obtained_response_type"),
-//					rs.getBoolean("result")
-//					);
-//		});
-//	}
-	
+}
 	
 
-}
+
