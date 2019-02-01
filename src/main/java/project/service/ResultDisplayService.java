@@ -5,26 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import project.dao.ResultDisplayDao;
+import project.dao.ResultsDao;
 import project.model.FileResultRow;
 
 @Service
 public class ResultDisplayService {
-	
+
 	@Autowired
-	ResultDisplayDao resultDisplayDao;
-	
-	
-	public List<FileResultRow> getAllRecords() {
-		
-		return resultDisplayDao.getAllRecords();
-		
-	}
+	ResultsDao resultsDao;
 
+	public List<FileResultRow> getByID(int id) {
 
-	public  List<FileResultRow> getByID(int id) {
-		
-		return resultDisplayDao.getByID(id);
+		return resultsDao.getByID(id);
 
 	}
 

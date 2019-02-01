@@ -1,24 +1,24 @@
 package project.model;
 
-import java.sql.Timestamp;
-
 public class FileResultRow {
 	private int fileId;
 	private int lineNo;
+	private String methodName;
 
-	private Timestamp startTime;
-	private Timestamp endTime;
+	private String startTime;
+	private String endTime;
 	private int expectedResponseCode;
 	private String expectedResponseType;
 	private int obtainedResponseCode;
 	private String obtainedResponseType;
 	private boolean result;
-	
-	public FileResultRow(int fileId, int lineNo, Timestamp startTime, Timestamp endTime, int expectedResponseCode,
+
+	public FileResultRow(int fileId, int lineNo, String methodName, String startTime, String endTime, int expectedResponseCode,
 			String expectedResponseType, int obtainedResponseCode, String obtainedResponseType, boolean result) {
 		super();
 		this.lineNo = lineNo;
 		this.fileId = fileId;
+		this.methodName = methodName;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.expectedResponseCode = expectedResponseCode;
@@ -30,7 +30,6 @@ public class FileResultRow {
 
 	public FileResultRow() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getLineNo() {
@@ -49,19 +48,27 @@ public class FileResultRow {
 		this.fileId = fileId;
 	}
 
-	public Timestamp getStartTime() {
+	public String getMethodName() {
+		return methodName;
+	}
+
+	public void setMethodName(String methodName) {
+		this.methodName = methodName;
+	}
+
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Timestamp startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public Timestamp getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Timestamp endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
@@ -97,14 +104,20 @@ public class FileResultRow {
 		this.obtainedResponseType = obtainedResponseType;
 	}
 
-	public boolean isResult() {
+	public boolean getResult() {
 		return result;
 	}
 
 	public void setResult(boolean result) {
 		this.result = result;
 	}
-	
-	
-		
+
+	@Override
+	public String toString() {
+		return "FileResultRow [fileId=" + fileId + ", lineNo=" + lineNo + ", startTime=" + startTime + ", endTime="
+				+ endTime + ", expectedResponseCode=" + expectedResponseCode + ", expectedResponseType="
+				+ expectedResponseType + ", obtainedResponseCode=" + obtainedResponseCode + ", obtainedResponseType="
+				+ obtainedResponseType + ", result=" + result + "]";
+	}
+
 }
